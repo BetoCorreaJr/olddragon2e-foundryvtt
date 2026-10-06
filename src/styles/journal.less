@@ -1,9 +1,6 @@
 // Journal Content (section)
 .journal-sheet .window-content .journal-entry-content {
-  background: none;
-  background-color: white;
   font-family: 'Alegreya', serif;
-  color: black;
 
   // Journal Header (form)
   .journal-header {
@@ -11,7 +8,6 @@
       margin: 0px;
       padding: 0px;
       background-color: transparent;
-      color: black;
       border: none;
       .text-3xl;
       .font-bold;
@@ -293,7 +289,6 @@
 
           thead {
             background-color: transparent;
-            color: black;
             text-shadow: none;
             border: none;
 
@@ -330,7 +325,7 @@
             }
 
             tr:nth-child(odd) {
-              background-color: @dourado-50;
+              background-color: fade(@dourado-300, 20%);
             }
 
             tr:nth-child(even) {
@@ -353,7 +348,7 @@
 
           thead {
             border-bottom-width: 1px;
-            border-color: black;
+            border-color: currentColor;
           }
 
           thead tr th.inline-block {
@@ -375,11 +370,11 @@
 
           tbody {
             border-bottom-width: 1px;
-            border-color: black;
+            border-color: currentColor;
           }
 
           tbody tr td:first-child {
-            background-color: @cinza-300;
+            background-color: fade(@cinza-500, 30%);
           }
 
           tbody tr td img[title='Estágio 1: Iniciante (estatísticas para 1º e 2º Níveis)'],
