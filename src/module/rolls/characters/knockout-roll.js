@@ -8,13 +8,7 @@ export class KnockoutRoll extends BaseRoll {
   }
 
   get knockoutChance() {
-    let chance = 1;
-
-    if (this.actor.system.mod_forca > 0 && this.actor.system.mod_forca < 5) {
-      chance = this.actor.system.mod_forca;
-    }
-
-    return chance;
+    return Math.max(Number(this.actor.system.mod_forca) || 0, 1);
   }
 
   get printFormula() {

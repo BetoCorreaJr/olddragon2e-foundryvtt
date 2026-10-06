@@ -86,6 +86,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     if (this.isEditable) {
       html.find('.item-create').click(this._onItemCreate.bind(this));
       html.find('.item-edit').click(this._onItemEdit.bind(this));
+      html.find('.item-chat').click(this._onItemChat.bind(this));
       html.find('.item-equip').click(this._onItemEquip.bind(this));
       html.find('.item-update-quantity').change(this._onItemUpdateQuantity.bind(this));
       html.find('.item-delete').click(this._onItemDelete.bind(this));
@@ -402,6 +403,12 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     };
 
     return this.actor.createEmbeddedDocuments('Item', [itemData]);
+  }
+
+  // Enviar descrição do item para o chat
+  _onItemChat(event) {
+    event.preventDefault();
+    this.actor.items.get(event.currentTarget.closest('.item').dataset.itemId)?.roll();
   }
 
   // Editar item
