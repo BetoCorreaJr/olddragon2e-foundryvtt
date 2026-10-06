@@ -201,6 +201,7 @@ export default class OD2CharacterSheet extends foundry.appv1.sheets.ActorSheet {
     if (this.isEditable) {
       html.find('.item-create').click(this._onItemCreate.bind(this));
       html.find('.item-edit').click(this._onItemEdit.bind(this));
+      html.find('.item-chat').click(this._onItemChat.bind(this));
       html.find('.item-equip').click(this._onItemEquip.bind(this));
       html.find('.item-update-quantity').change(this._onItemUpdateQuantity.bind(this));
       html.find('.item-delete').click(this._onItemDelete.bind(this));
@@ -881,12 +882,10 @@ export default class OD2CharacterSheet extends foundry.appv1.sheets.ActorSheet {
     });
   }
 
-  // Rolar item (não utilizado)
-  _onItemRoll(event) {
-    const itemID = event.currentTarget.closest('.item').dataset.itemId;
-    const item = this.actor.items.get(itemID);
-
-    item.roll();
+  // Enviar descrição do item para o chat
+  _onItemChat(event) {
+    event.preventDefault();
+    this.actor.items.get(event.currentTarget.closest('.item').dataset.itemId)?.roll();
   }
 
   // Criar item
