@@ -49,28 +49,28 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const item = await Item.implementation.fromDropData(data);
 
     if (item.type === 'race_ability') {
-      ui.notifications.error('Habilidades de raça não podem ser vinculadas a ajudantes.');
+      ui.notifications.error(game.i18n.localize('olddragon2e.notifications.retainer_no_race_abilities'));
       return;
     }
 
     if (item.type === 'class') {
-      ui.notifications.error('Ajudantes não podem ter uma classe.');
+      ui.notifications.error(game.i18n.localize('olddragon2e.notifications.retainer_no_class'));
       return;
     }
 
     if (item.type === 'class_ability') {
-      ui.notifications.error('Habilidades de classe não podem ser vinculadas a ajudantes.');
+      ui.notifications.error(game.i18n.localize('olddragon2e.notifications.retainer_no_class_abilities'));
       return;
     }
 
     if (item.type === 'spell') {
-      ui.notifications.error('Ajudantes não podem usar magias.');
+      ui.notifications.error(game.i18n.localize('olddragon2e.notifications.retainer_no_spells'));
       return;
     }
 
     if (item.type === 'race') {
       if (this.actor.system.race !== null) {
-        ui.notifications.error('Este ajudante já possui uma raça. Remova a raça atual antes de adicionar uma nova.');
+        ui.notifications.error(game.i18n.localize('olddragon2e.notifications.retainer_race_already_linked'));
         return;
       }
     }
@@ -150,7 +150,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const attackRoll = new AttackRoll(this.actor, item, ba, baBonus);
 
     await showDialog({
-      title: `Rolar Ataque`,
+      title: game.i18n.localize('olddragon2e.dialog.roll_attack'),
       content: 'systems/olddragon2e/templates/dialog/characters/attack-roll-dialog.hbs',
       data: {
         formula: attackRoll.printFormula,
@@ -158,7 +158,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             let adjustment = html.find('#adjustment').val();
             const bonus = html.find('#bonus').val();
@@ -192,7 +192,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const unarmedAttackRoll = new UnarmedAttackRoll(this.actor);
 
     await showDialog({
-      title: `Rolar Ataque Desarmado`,
+      title: game.i18n.localize('olddragon2e.dialog.roll_unarmed_attack'),
       content: 'systems/olddragon2e/templates/dialog/characters/unarmed-attack-roll-dialog.hbs',
       data: {
         formula: unarmedAttackRoll.printFormula,
@@ -200,7 +200,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             let adjustment = html.find('#adjustment').val();
             const bonus = html.find('#bonus').val();
@@ -226,12 +226,12 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const damageRoll = new DamageRoll(this.actor, item);
 
     await showDialog({
-      title: `Rolar Dano`,
+      title: game.i18n.localize('olddragon2e.dialog.roll_damage'),
       content: 'systems/olddragon2e/templates/dialog/characters/damage-roll-dialog.hbs',
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             const bonus = html.find('#bonus').val();
             const mode = html.find('#rollMode').val();
@@ -272,7 +272,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const knockoutRoll = new KnockoutRoll(this.actor);
 
     await showDialog({
-      title: `Chance de nocaute`,
+      title: game.i18n.localize('olddragon2e.dialog.knockout_chance'),
       content: 'systems/olddragon2e/templates/dialog/characters/knockout-roll-dialog.hbs',
       data: {
         formula: knockoutRoll.printFormula,
@@ -280,7 +280,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             const bonus = html.find('#bonus').val();
             const mode = html.find('#rollMode').val();
@@ -303,7 +303,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const statRoll = new StatRoll(this.actor, statLabel, statName);
 
     await showDialog({
-      title: `Teste de ${statLabel}`,
+      title: game.i18n.format('olddragon2e.dialog.test_of', { label: statLabel }),
       content: 'systems/olddragon2e/templates/dialog/characters/stat-roll-dialog.hbs',
       data: {
         formula: statRoll.formula(),
@@ -311,7 +311,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             let adjustment = html.find('#adjustment').val();
             const bonus = html.find('#bonus').val();
@@ -335,7 +335,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const jpRoll = new JPRoll(this.actor, jpLabel, jpName);
 
     await showDialog({
-      title: `Teste de ${jpLabel}`,
+      title: game.i18n.format('olddragon2e.dialog.test_of', { label: jpLabel }),
       content: 'systems/olddragon2e/templates/dialog/characters/jp-roll-dialog.hbs',
       data: {
         formula: jpRoll.formula(),
@@ -343,7 +343,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             let adjustment = html.find('#adjustment').val();
             const bonus = html.find('#bonus').val();
@@ -368,7 +368,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     const baRoll = new BARoll(this.actor, ba);
 
     await showDialog({
-      title: `Teste de ${baLabel}`,
+      title: game.i18n.format('olddragon2e.dialog.test_of', { label: baLabel }),
       content: 'systems/olddragon2e/templates/dialog/characters/ba-roll-dialog.hbs',
       data: {
         formula: baRoll.printFormula,
@@ -376,7 +376,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
       buttons: {
         roll: {
           icon: "<i class='fa-solid fa-dice-d20'></i>",
-          label: 'Rolar',
+          label: game.i18n.localize('olddragon2e.roll'),
           callback: async (html) => {
             let adjustment = html.find('#adjustment').val();
             const bonus = html.find('#bonus').val();
@@ -399,22 +399,22 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
 
     switch (itemType) {
       case 'weapon':
-        itemName = 'Nova Arma';
+        itemName = game.i18n.localize('olddragon2e.new_weapon');
         break;
       case 'armor':
-        itemName = 'Nova Armadura';
+        itemName = game.i18n.localize('olddragon2e.new_armor');
         break;
       case 'shield':
-        itemName = 'Novo Escudo';
+        itemName = game.i18n.localize('olddragon2e.new_shield');
         break;
       case 'misc':
-        itemName = 'Novo Item';
+        itemName = game.i18n.localize('olddragon2e.new_misc');
         break;
       case 'container':
-        itemName = 'Novo Recipiente/Vasilhame';
+        itemName = game.i18n.localize('olddragon2e.new_container');
         break;
       case 'vehicle':
-        itemName = 'Nova Montaria/Transporte';
+        itemName = game.i18n.localize('olddragon2e.new_vehicle');
         break;
     }
 
@@ -472,9 +472,8 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
   async _onBecomeAdventurer(event) {
     event.preventDefault();
     const confirmed = await Dialog.confirm({
-      title: 'Tornar Aventureiro',
-      content:
-        '<p class="text-center">Este ajudante está pronto para se tornar um aventureiro de 1º nível?<br>Será necessário vincular uma classe a ele.</p>',
+      title: game.i18n.localize('olddragon2e.become_adventurer'),
+      content: `<p class="text-center">${game.i18n.localize('olddragon2e.dialog.become_adventurer_confirm')}</p>`,
       yes: () => true,
       no: () => false,
     });
@@ -544,11 +543,13 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
     let itemName = this.actor.items.get(itemId).name;
     let itemType = this.actor.items.get(itemId).type;
 
+    const boldName = `<strong>${itemName}</strong>`;
+
     const standardTemplate = `
         <form>
             <div>
                 <center>
-                    Excluir <strong>${itemName}</strong>?
+                    ${game.i18n.format('olddragon2e.dialog.delete_item_confirm', { name: boldName })}
                 </center>
             </div>
         </form>`;
@@ -557,7 +558,7 @@ export default class OD2RetainerSheet extends foundry.appv1.sheets.ActorSheet {
         <form>
             <div>
                 <center>
-                    Excluir a raça <strong>${itemName}</strong>?
+                    ${game.i18n.format('olddragon2e.dialog.delete_race_confirm', { name: boldName })}
                 </center>
             </div>
         </form>`;
