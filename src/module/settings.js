@@ -76,6 +76,15 @@ export const registerSettings = function () {
     type: Number,
     default: 0,
   });
+
+  game.settings.register('olddragon2e', 'ammoTracking', {
+    name: game.i18n.localize('olddragon2e.settings.ammoTracking.name'),
+    hint: game.i18n.localize('olddragon2e.settings.ammoTracking.hint'),
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 };
 
 // Function to get the current initiative type

@@ -8,6 +8,11 @@ export class OD2WeaponDataModel extends OD2EquipmentDataModel {
       type: new fields.StringField({
         initial: 'melee',
       }),
+      ammo_type: new fields.StringField({
+        required: true,
+        initial: 'none',
+        choices: ['none', 'self', 'arrow', 'bolt', 'bolt_small'],
+      }),
       damage_type: new fields.StringField({
         initial: 'none',
       }),

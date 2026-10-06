@@ -319,6 +319,14 @@
       "unarmed": "Unarmed",
       "natural_weapon": "Natural Weapon"
     },
+    "ammo_type": "Ammo Type",
+    "ammo_types": {
+      "none": "None (untracked)",
+      "self": "Itself (thrown)",
+      "arrow": "Arrow",
+      "bolt": "Bolt",
+      "bolt_small": "Small Bolt"
+    },
     "weapon_sizes": {
       "label": "Size",
       "none": "None",
@@ -366,6 +374,7 @@
     "open": "Open",
     "show": "Show",
     "cast": "Cast",
+    "send_to_chat": "Send to chat",
     "cast_declaration": "cast the spell:",
     "edit": "Edit",
     "equip": "Equip/Unequip",
@@ -612,6 +621,10 @@
     "odo_import_hint": "Paste the link to the sheet page of the <strong>helper</strong> or <strong>character</strong> chosen on <a href=\"{url}\">ODO</a>.",
     "odo_import_hint2": "Use the “Share” button, or copy the URL from the browser.",
     "settings": {
+      "ammoTracking": {
+        "name": "Ammo Tracking",
+        "hint": "Only affects weapons with an Ammo Type set on their sheet: each attack spends 1 unit of the equipped matching ammunition and is blocked when none is left. Weapon and ammunition must both be equipped. Syncing from Old Dragon Online resets the Ammo Type and the ammunition count."
+      },
       "initiativeType": {
         "name": "Initiative Type",
         "hint": "Choose between standard attribute-based initiative (Dexterity/Wisdom) or individual initiative (1d12).",
@@ -620,6 +633,13 @@
           "standard": "Standard (Dexterity/Wisdom)"
         }
       }
+    },
+    "ammoTracking": {
+      "outOfAmmo": "{weapon} has no ammunition equipped!",
+      "ranOut": "{weapon} ran out of ammunition!"
+    },
+    "warnings": {
+      "ambiguousAmmo": "More than one compatible ammunition is equipped. Unequip one to continue."
     },
     "sync_from_odo": "Sync from Old Dragon Online",
     "sync_warning": "Syncing will download changes from the Old Dragon Online character sheet and overwrite this sheet. Any changes made here that were not made on Old Dragon Online will be lost. Do you want to continue?",
