@@ -622,10 +622,7 @@
     "settings": {
       "ammoTracking": {
         "name": "Ammo Tracking",
-        "hint": "When enabled, ranged and thrown weapons require compatible equipped ammunition, consuming 1 unit per attack and blocking the attack when ammo runs out.",
-        "disableWarning": "Warning: the Forien's Ammo Swapper module is active and depends on this tracking — disabling it may cause weapons and ammunition to stop working correctly in the module.",
-        "autoEnabled": "Ammo Tracking automatically enabled (Forien's Ammo Swapper module detected).",
-        "equipReminder": "Ammo Tracking enabled: it only affects weapons with an Ammo Type set on their sheet. For those weapons, both the weapon and the ammunition need to be equipped."
+        "hint": "Only affects weapons with an Ammo Type set on their sheet: each attack spends 1 unit of the equipped matching ammunition and is blocked when none is left. Weapon and ammunition must both be equipped. Syncing from Old Dragon Online resets the Ammo Type and the ammunition count."
       },
       "initiativeType": {
         "name": "Initiative Type",
